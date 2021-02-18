@@ -143,9 +143,21 @@ class _$_Item extends _Item with DiagnosticableTreeMixin {
   @override
   final String imageUrl;
 
+  bool _didpriceWithUnit = false;
+  String _priceWithUnit;
+
+  @override
+  String get priceWithUnit {
+    if (_didpriceWithUnit == false) {
+      _didpriceWithUnit = true;
+      _priceWithUnit = '$price円+税';
+    }
+    return _priceWithUnit;
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Item(id: $id, price: $price, title: $title, imageUrl: $imageUrl)';
+    return 'Item(id: $id, price: $price, title: $title, imageUrl: $imageUrl, priceWithUnit: $priceWithUnit)';
   }
 
   @override
@@ -156,7 +168,8 @@ class _$_Item extends _Item with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('price', price))
       ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('imageUrl', imageUrl));
+      ..add(DiagnosticsProperty('imageUrl', imageUrl))
+      ..add(DiagnosticsProperty('priceWithUnit', priceWithUnit));
   }
 
   @override
