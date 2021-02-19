@@ -5,6 +5,7 @@ import '../item/item.dart';
 
 part 'item_stock.freezed.dart';
 
+// 在庫？
 @freezed
 abstract class ItemStock implements _$ItemStock {
   factory ItemStock({

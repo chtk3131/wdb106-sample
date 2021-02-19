@@ -4,6 +4,7 @@ import 'package:state_notifier/state_notifier.dart';
 import '../../entities/cart_item/cart_item.dart';
 import '../../entities/item/item.dart';
 import 'cart_state.dart';
+export 'cart_state.dart';
 
 // providerを定義
 final cartProvider = StateNotifierProvider((ref) => CartController());
