@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:wdb106_sample/components/components.dart';
 import 'package:wdb106_sample/model/controllers/cart_controller/cart_controller.dart';
+import 'package:wdb106_sample/pages/cart_page/cart_header.dart';
 import 'package:wdb106_sample/pages/cart_page/cart_tile.dart';
 
 // true or falseを返すProvider
@@ -36,6 +37,7 @@ class CartPage extends HookWidget {
         ),
         body: Column(
           children: const [
+            CartHeader(),
             Expanded(child: _ListView()),
           ],
         ),
