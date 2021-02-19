@@ -6,6 +6,7 @@ import '../../model.dart';
 import 'item_state.dart';
 export 'item_state.dart';
 
+// ignore: top_level_function_literal_block
 final itemsProvider = StateNotifierProvider((ref) {
   return ItemController(ref.read);
 });
