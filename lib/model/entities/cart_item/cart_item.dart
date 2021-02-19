@@ -17,7 +17,13 @@ abstract class CartItem implements _$CartItem {
   // 名前付きprivateコンストラクタ、というらしい
   CartItem._();
 
-  CartItem increased() => copyWith(quantity: quantity + 1);
+  CartItem increased() {
+    var copy = copyWith(quantity: quantity + 1);
+    return copy;
+  }
 
-  CartItem decreased() => copyWith(quantity: quantity - 1);
+  CartItem decreased() {
+    var copy = copyWith(quantity: quantity - 1);
+    return copy;
+  }
 }

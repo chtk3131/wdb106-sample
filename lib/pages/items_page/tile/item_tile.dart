@@ -92,7 +92,11 @@ class _AddButton extends HookWidget {
       // 変化させる必要がないのでconst
       child: const Text("追加"),
       // 在庫があれば「追加」可能、なければ無理
-      onPressed: hasStock ? controller.addToCart : null,
+      onPressed: () {
+        if (hasStock) {
+          controller.addToCart();
+        }
+      },
     );
   }
 }

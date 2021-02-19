@@ -16,8 +16,12 @@ class ItemTileController extends StateNotifier<ItemTileState> {
     _cartControllerRemoveListener =
         _read(cartProvider).addListener((cartState) {
       final cartItem = cartState.cartItem(stock.item);
-      if (cartItem == null) return;
-      final cartItemQuantity = cartItem.quantity ?? 0;
+      var cartItemQuantity;
+      if (cartItem == null) {
+        cartItemQuantity = 0;
+      } else {
+        cartItemQuantity = cartItem.quantity;
+      }
       state = state.copyWith(quantity: stock.quantity - cartItemQuantity);
     });
   }
@@ -27,9 +31,16 @@ class ItemTileController extends StateNotifier<ItemTileState> {
 
   VoidCallback _cartControllerRemoveListener;
 
-  ItemStock get stock => _read(itemsProvider).state.stock(id);
+  ItemStock get stock {
+    var state = _read(itemsProvider).state;
+    var result = state.stock(id);
+    return result;
+  }
 
-  void addToCart() => _read(cartProvider).add(stock.item);
+  void addToCart() {
+    var provider = _read(cartProvider);
+    provider.add(stock.item);
+  }
 
   @override
   void dispose() {

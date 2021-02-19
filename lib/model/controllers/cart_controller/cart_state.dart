@@ -19,22 +19,37 @@ abstract class CartState implements _$CartState {
 
   // idでソートした状態のCartItemリスト
   @late
-  List<CartItem> get sortedItem =>
-      itemMap.values.toList()..sort((a, b) => a.item.id.compareTo(b.item.id));
+  List<CartItem> get sortedItem {
+    var list = itemMap.values.toList();
+    list = list..sort((a, b) => a.item.id.compareTo(b.item.id));
+    return list;
+  }
 
   @late
-  CartSummary get summary => CartSummary(
-        quantity: itemMap.values.fold<int>(0, (sum, e) => sum + e.quantity),
-        totalPrice: itemMap.values
-            .fold<int>(0, (sum, e) => sum + e.item.price * e.quantity),
-      );
+  CartSummary get summary {
+    var quantity = itemMap.values.fold<int>(0, (sum, e) => sum + e.quantity);
+    var totalPrice = itemMap.values
+        .fold<int>(0, (sum, e) => sum + e.item.price * e.quantity);
+
+    var summary = CartSummary(
+      quantity: quantity,
+      totalPrice: totalPrice,
+    );
+
+    return summary;
+  }
 
   // 一致しているアイテムが存在すれば返す
   // TODO:nullがかえってくるかもしれない
   CartItem cartItem(Item item) {
-    return sortedItem.length > 0
-        ? sortedItem.firstWhere((element) => element == item)
-        : null;
+    int length = sortedItem.length;
+    if (length > 0) {
+      var target = sortedItem.firstWhere((element) => element.item == item,
+          orElse: () => null);
+      return target;
+    } else {
+      return null;
+    }
   }
 }
 
