@@ -40,7 +40,6 @@ abstract class CartState implements _$CartState {
   }
 
   // 一致しているアイテムが存在すれば返す
-  // TODO:nullがかえってくるかもしれない
   CartItem cartItem(Item item) {
     int length = sortedItem.length;
     if (length > 0) {
