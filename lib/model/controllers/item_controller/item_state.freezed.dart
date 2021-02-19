@@ -107,9 +107,23 @@ class _$_ItemState extends _ItemState {
   @override
   final bool isLoading;
 
+  bool _did_map = false;
+  Map<int, ItemStock> __map;
+
+  @override
+  Map<int, ItemStock> get _map {
+    if (_did_map == false) {
+      _did_map = true;
+      __map = Map.fromEntries(
+        stocks.map((e) => MapEntry(e.item.id, e)),
+      );
+    }
+    return __map;
+  }
+
   @override
   String toString() {
-    return 'ItemState(stocks: $stocks, isLoading: $isLoading)';
+    return 'ItemState(stocks: $stocks, isLoading: $isLoading, _map: $_map)';
   }
 
   @override

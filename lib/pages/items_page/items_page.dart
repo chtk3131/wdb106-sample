@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:wdb106_sample/model/controllers/controllers.dart';
+import 'package:wdb106_sample/pages/items_page/tile/item_tile.dart';
 import 'cart_button.dart';
 
 class ItemsPage extends StatelessWidget {
@@ -32,7 +33,7 @@ class _ListView extends HookWidget {
         useProvider(itemsProvider.state.select((value) => value.isLoading));
     // 商品のIDリストを取得
     final ids = useProvider(itemsProvider.state
-        .select((value) => value.stocks.map((e) => e.item.id)));
+        .select((value) => value.stocks.map((e) => e.item.id))).toList();
 
     return isLoading
         ? const Center(
@@ -41,6 +42,10 @@ class _ListView extends HookWidget {
         : ListView.builder(
             padding: const EdgeInsets.symmetric(vertical: 8),
             itemCount: ids.length,
-            itemBuilder: (_, index) {});
+            itemBuilder: (_, index) {
+              return ItemTile(
+                id: ids[index],
+              );
+            });
   }
 }
