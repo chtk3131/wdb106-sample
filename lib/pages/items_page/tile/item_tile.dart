@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:wdb106_sample/components/item_image.dart';
+import 'package:wdb106_sample/components/item_info.dart';
 import 'package:wdb106_sample/pages/items_page/tile/item_tile_controller.dart';
 
 // 商品一覧画面に表示するタイルWidget
@@ -50,6 +51,15 @@ class ItemTile extends HookWidget {
                 width: 8,
               ),
               // 商品情報
+              ItemInfo(
+                title: item.title,
+                price: item.priceWithUnit,
+                // 在庫
+                info: Text(
+                  "在庫 $quantity",
+                  style: theme.textTheme.caption,
+                ),
+              ),
               // 追加ボタン
               _AddButton(id: id),
             ],
