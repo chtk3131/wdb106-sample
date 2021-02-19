@@ -33,8 +33,21 @@ class CartPage extends HookWidget {
             text: "閉じる",
           ),
         ),
-        body: Container(),
+        body: Column(
+          children: const [
+            Expanded(child: _ListView()),
+          ],
+        ),
       ),
     );
+  }
+}
+
+class _ListView extends HookWidget {
+  const _ListView({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
